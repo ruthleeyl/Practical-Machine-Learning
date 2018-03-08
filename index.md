@@ -9,13 +9,13 @@ output:
 
 
 
-##Background
+## Background
 Six young health participants were asked to perform one set of 10 repetitions of the Unilateral Dumbbell Biceps Curl in five different fashions: exactly according to the specification (Class A), throwing the elbows to the front (Class B), lifting the dumbbell only halfway (Class C), lowering the dumbbell only halfway (Class D) and throwing the hips to the front (Class E).  The data provided recorded features on the Euler angles (roll, pitch and yaw), as well as the raw accelerometer, gyroscope and magnetometer readings. For the Euler angles of each of the four sensors, eight features recorded are: mean, variance, standard deviation, max, min, amplitude, kurtosis and skewness, generating in total 96 derived feature sets.
 
-##Aim of the Project
+## Aim of the Project
 The purpose of the project is to predict how well the people did the exercise. A prediction model will be built using the training dataset and subsequently applied on the testing dataset.   
 
-##Data Exploration and Preprocessing
+## Data Exploration and Preprocessing
 
 In exploring the data, we notice that the testing dataset has several columns, where all values are "NA". There is also one variable "problem_id" in the testing dataset that not found in training dataset. These variables could not be considered as predictors. Upon filtering, we have 60 variables in the training_explore dataset, including "classe". Checks revealed that there are no missing values in these 60 variables in this training_explore dataset.
 
@@ -142,18 +142,14 @@ The accuracy level is higher than the **boosted trees model**, which achieved an
 ##     E    0    0    0    1 1078
 ```
 
-##Conclusion
+## Conclusion
 The **random forest model** is chosen to predict how well the six people did the exercise. After having applied the model on the testing data, the model achieves a **100% accuracy**.
-
-
-
-\pagebreak
 
 ## Appendix
 
-###Exploratory Data Analysis Figures 
+## Exploratory Data Analysis Figures 
 
-####Plainly Exploratory
+### Plainly Exploratory
 
 ```r
 plotclasse1<-qplot(total_accel_belt,total_accel_arm,colour=classe,data=trainData)
@@ -178,18 +174,7 @@ plotclasse10<-qplot(magnet_dumbbell_y,magnet_dumbbell_z,colour=classe,data=train
 #grid.arrange(plotclasse7,plotclasse8,plotclasse9,plotclasse10, nrow=2,ncol=2)
 ```
 
-####Classification Trees
-
-
-```r
-set.seed(125)
-modFit<-train(classe~., method="rpart", data= trainData)  
-fancyRpartPlot(modFit$finalModel)
-```
-
-![](index_files/figure-html/explore5-1.png)<!-- -->
-
-####Cluster with k-means
+### Cluster with k-means
 
 ```r
 kMeans1<-kmeans(subset(trainData,select=c(total_accel_belt,total_accel_arm,total_accel_dumbbell,total_accel_forearm)),centers=5)
@@ -199,4 +184,15 @@ plotk2<-qplot(total_accel_dumbbell,total_accel_forearm,colour=clusters,data=trai
 grid.arrange(plotk1,plotk2, nrow=1,ncol=2)
 ```
 
-![](index_files/figure-html/explore6-1.png)<!-- -->
+![](index_files/figure-html/kmeanscluster-1.png)<!-- -->
+
+### Classification Trees
+
+
+```r
+set.seed(125)
+modFit<-train(classe~., method="rpart", data= trainData)  
+fancyRpartPlot(modFit$finalModel)
+```
+
+![](index_files/figure-html/classificationtree-1.png)<!-- -->
