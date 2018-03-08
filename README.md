@@ -6,3 +6,6 @@ Six young health participants were asked to perform one set of 10 repetitions of
 
 ## Aim of the Project
 The purpose of the project is to predict how well the people did the exercise indicated by variable "classe" (i.e. Class A, B, C, D or E). A prediction model will be built using the training dataset and subsequently applied on the testing dataset.
+
+## Attachments
+The project includes the following attachments: index.Rmd, index.md, index.html and exploratory figures (simple exploratory plots, classifciation tree and k-means clustering plots).
